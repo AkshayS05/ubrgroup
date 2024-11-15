@@ -1,0 +1,148 @@
+/* About Us Section Styles */
+#about-us {
+  width: 100%;
+  padding: 3em 0;
+  background-color: #e9ecef; /* Light background for the whole section */
+}
+
+#about-us .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the content */
+  margin-bottom: 3em;
+  flex-wrap: wrap;
+  padding: 0 1em; /* Add horizontal padding */
+}
+
+.about-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-image,
+.about-text {
+  flex: 1;
+  min-width: 16em; /* 256px */
+  max-width: 40%; /* Limit the maximum width */
+  margin: 0 1em; /* Add margin between elements */
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.625em; /* 10px */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.about-text {
+  padding: 1.25em; /* 20px */
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #0056b3; /* Brand color */
+  position: relative;
+}
+
+.about-text h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background-color: #0056b3;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* Alternate background colors for sections */
+.about-section:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.about-section:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Responsive Media Queries */
+
+/* Small screens (up to 48em or 768px) */
+@media (max-width: 48em) {
+  .about-section {
+    flex-direction: column;
+    align-items: center; /* Center align items */
+    padding: 0 1em;
+  }
+
+  .about-image,
+  .about-text {
+    max-width: 100%;
+    margin: 0 0 1.5em 0; /* Add bottom margin */
+  }
+
+  .about-text {
+    padding: 0;
+    text-align: center; /* Center text */
+  }
+
+  .about-text h2 {
+    font-size: 2rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+}
+
+/* Medium screens (up to 62em or 992px) */
+@media (max-width: 62em) {
+  .about-image,
+  .about-text {
+    max-width: 45%;
+  }
+
+  .about-text h2 {
+    font-size: 2.2rem;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Large screens (above 62em or 992px) */
+@media (min-width: 62em) {
+  .about-text h2 {
+    font-size: 2.5rem;
+  }
+
+  .about-text p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Additional Global Styles (optional) */
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #333;
+}

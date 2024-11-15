@@ -1,0 +1,94 @@
+/* Full-page dark gradient background */
+body.login {
+  background: linear-gradient(135deg, #000, #333);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* Center the login form with shadow and border */
+.login form {
+  background-color: #222;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  max-width: 400px;
+  width: 100%;
+  color: #fff;
+}
+
+/* Custom logo styling */
+.login h1 a {
+  background-image: url("../images/ubrgroup-logo.png"); /* Update path if needed */
+  background-size: contain;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+/* Input field styling */
+.login input[type="text"],
+.login input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* Placeholder text color */
+.login input::placeholder {
+  color: #bbb;
+}
+
+/* Remember Me checkbox aligned horizontally */
+.login .forgetmenot {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+/* Login button styling */
+.wp-core-ui .button-primary {
+  background-color: #444;
+  border-color: #666;
+  font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  color: #fff;
+}
+
+.wp-core-ui .button-primary:hover {
+  background-color: #555;
+}
+
+/* Links styling */
+.login #nav a,
+.login #backtoblog a {
+  color: #bbb;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.login #nav a:hover,
+.login #backtoblog a:hover {
+  color: #fff;
+}
+
+/* Adjust small text links to align properly */
+#nav,
+#backtoblog {
+  text-align: center;
+  margin-top: 10px;
+}
