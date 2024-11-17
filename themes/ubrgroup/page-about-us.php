@@ -33,6 +33,7 @@ get_header(); ?>
                     <div class="about-text">
                         <h2><?php the_title(); ?></h2>
                         <?php the_content(); ?>
+                        <a href="<?php echo site_url('/contact'); ?>" class="btn">Learn More</a>
                     </div>
                 </div>
         <?php

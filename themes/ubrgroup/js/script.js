@@ -119,50 +119,54 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const carouselInner = document.querySelector(".carousel-inner");
   const items = document.querySelectorAll(".carousel-item");
-  const dots = document.querySelectorAll(".dot");
+  const prevButton = document.querySelector(".prev");
+  const nextButton = document.querySelector(".next");
 
-  if (carouselInner && items.length > 0 && dots.length > 0) {
-    let currentIndex = 0;
-    let interval;
+  let currentIndex = 0;
 
-    function updateCarousel(index) {
-      if (index < 0) index = items.length - 1;
-      if (index >= items.length) index = 0;
-
-      carouselInner.style.transform = `translateX(-${index * 100}%)`;
-
-      dots.forEach((dot) => dot.classList.remove("active"));
-      dots[index].classList.add("active");
-
-      currentIndex = index;
-    }
-
-    function nextSlide() {
-      updateCarousel(currentIndex + 1);
-    }
-
-    function startAutoSlide() {
-      interval = setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoSlide() {
-      clearInterval(interval);
-    }
-
-    dots.forEach((dot) => {
-      dot.addEventListener("click", function () {
-        stopAutoSlide();
-        const index = parseInt(this.getAttribute("data-index"));
-        updateCarousel(index);
-        startAutoSlide();
-      });
+  function updateCarousel() {
+    items.forEach((item, index) => {
+      item.classList.remove("center");
+      item.style.opacity = "0"; // Hide all items
+      if (index === currentIndex) {
+        item.classList.add("center");
+        item.style.opacity = "1"; // Show current item
+      }
     });
-
-    startAutoSlide();
+    const offset = -currentIndex * 100;
+    carouselInner.style.transform = `translateX(${offset}%)`;
   }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarousel();
+  }
+
+  // Event listeners for navigation buttons
+  nextButton.addEventListener("click", nextSlide);
+  prevButton.addEventListener("click", prevSlide);
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      nextSlide();
+    } else if (event.key === "ArrowLeft") {
+      prevSlide();
+    }
+  });
+
+  // Auto-slide every 5 seconds
+  setInterval(nextSlide, 5000);
+
+  updateCarousel();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -219,4 +223,66 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("An error occurred. Please try again later.");
     }
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Hamburger Menu Toggle
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
+
+  if (hamburger && navMenu) {
+    // Toggle the hamburger and menu visibility
+    hamburger.addEventListener("click", function () {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("open");
+    });
+
+    // Close the menu when clicking on a menu link
+    const navLinks = document.querySelectorAll(".nav-links a");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        navMenu.classList.remove("open");
+        hamburger.classList.remove("active");
+      });
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const statNumbers = document.querySelectorAll(".stat-number");
+
+  if (statNumbers.length > 0) {
+    const animateCountUp = (element) => {
+      const target = +element.getAttribute("data-target"); // Get the target value
+      let count = 0;
+      const increment = target / 100; // Adjust the speed
+
+      const updateCount = () => {
+        count += increment;
+        if (count < target) {
+          element.textContent = Math.floor(count) + "+"; // Add "+" during animation
+          requestAnimationFrame(updateCount);
+        } else {
+          element.textContent = target + "+"; // Final number with "+"
+        }
+      };
+
+      updateCount();
+    };
+
+    // Use IntersectionObserver to trigger animation on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCountUp(entry.target);
+            observer.unobserve(entry.target); // Stop observing after animation
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+
+    statNumbers.forEach((stat) => observer.observe(stat)); // Observe each number
+  }
 });
