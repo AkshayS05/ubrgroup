@@ -133,7 +133,7 @@ function handle_contact_form_submission($request) {
     }
 
     // Prepare and send the email
-    $to = 'Dispatch@ubrgroup.ca'; // Replace with your email address
+    $to = 'dispatch@ubrgroup.ca'; // Replace with your email address
     $subject = 'New Contact Form Submission';
     $body = "Name: $name\nEmail: $email\nMessage: $message";
     $headers = array('Content-Type: text/plain; charset=UTF-8');

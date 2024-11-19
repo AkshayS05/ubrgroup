@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = sanitize_textarea_field($_POST['message']);
 
     // Prepare email to be sent
-    $to = 'Dispatch@ubrgroup.ca';  // Replace this with your Outlook email address
+    $to = 'dispatch@ubrgroup.ca';  // Replace this with your Outlook email address
     $subject = 'New Contact Form Submission from ' . $name;
     $body = "Name: $name\nEmail: $email\nMessage:\n$message";
     $headers = [
