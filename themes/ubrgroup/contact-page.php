@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $body = "Name: $name\nEmail: $email\nMessage:\n$message";
     $headers = [
         'Content-Type: text/plain; charset=UTF-8',
-        'From: ' . get_bloginfo('name') . ' <no-reply@' . $_SERVER['SERVER_NAME'] . '>',
+       'From: ' . get_bloginfo('name') . ' <no-reply@ubrgroup.ca>',
         'Reply-To: ' . $email
     ];
 
