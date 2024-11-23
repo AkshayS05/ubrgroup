@@ -121,62 +121,72 @@ Driven by innovation and integrity, we pride ourselves on connecting communities
 <?php get_template_part('section', 'achievements'); ?>
 
 <!-- Testimonials Section -->
-<section id="testimonials-carousel">
-  <div class="container-vertical">
-    <h2>What Our Clients Say</h2>
-    <div class="carousel">
-      <div class="carousel-inner">
-        <?php
-        // Query to fetch testimonials
-        $args = array(
-          'post_type'      => 'testimonial', // Custom post type
-          'posts_per_page' => 10, // Limit to 10 testimonials
-          'post_status'    => 'publish', // Only published testimonials
-        );
+<?php
+// Query to fetch testimonials
+$args = array(
+  'post_type'      => 'testimonial', // Custom post type
+  'posts_per_page' => 10, // Limit to 10 testimonials
+  'post_status'    => 'publish', // Only published testimonials
+);
 
-        $testimonials = new WP_Query($args);
+$testimonials = new WP_Query($args);
 
-        if ($testimonials->have_posts()) :
-            $index = 0; // To track the first item
-            while ($testimonials->have_posts()) : $testimonials->the_post();
-              // Fetch custom meta fields
-              $business_name = get_post_meta(get_the_ID(), 'testimonial_business_name', true);
-              $rating = get_post_meta(get_the_ID(), 'testimonial_rating', true);
-              $review = get_post_meta(get_the_ID(), 'testimonial_review', true);
-          
-              // Skip testimonials without a review or business name
-              if (empty($business_name) || empty($review)) {
-                continue; // Skip this iteration if required data is missing
-              }
+if ($testimonials->have_posts()) : ?>
+  <section id="testimonials-carousel">
+    <div class="container-vertical">
+      <h2>What Our Clients Say</h2>
+      <div class="carousel">
+        <div class="carousel-inner">
+          <?php
+          $index = 0; // To track the first item
+          while ($testimonials->have_posts()) : $testimonials->the_post();
+            // Fetch custom meta fields
+            $business_name = get_post_meta(get_the_ID(), 'testimonial_business_name', true);
+            $rating = get_post_meta(get_the_ID(), 'testimonial_rating', true);
+            $review = get_post_meta(get_the_ID(), 'testimonial_review', true);
+
+            // Skip testimonials without a review or business name
+            if (empty($business_name) || empty($review)) {
+              continue; // Skip this iteration if required data is missing
+            }
           ?>
-              <div class="carousel-item <?php echo $index === 0 ? 'center' : ''; ?>">
-                <div class="testimonial-card">
-                  <div class="testimonial-content">
-                    <!-- Review -->
-                    <p class="review-text">"<?php echo esc_html($review); ?>"</p>
-                    <!-- Business Name -->
-                    <p class="business-name">- <?php echo esc_html($business_name); ?></p>
-                    <!-- Rating -->
-                    <?php if ($rating) : ?>
-                      <div class="testimonial-rating">
-                        <?php for ($i = 1; $i <= 5; $i++) : ?>
-                          <span style="color: <?php echo $i <= $rating ? '#ffd700' : '#e4e5e9'; ?>">★</span>
-                        <?php endfor; ?>
-                      </div>
-                    <?php endif; ?>
-                  </div>
+            <div class="carousel-item <?php echo $index === 0 ? 'center' : ''; ?>">
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  <!-- Review -->
+                  <p class="review-text">"<?php echo esc_html($review); ?>"</p>
+                  <!-- Business Name -->
+                  <p class="business-name">- <?php echo esc_html($business_name); ?></p>
+                  <!-- Rating -->
+                  <?php if ($rating) : ?>
+                    <div class="testimonial-rating">
+                      <?php for ($i = 1; $i <= 5; $i++) : ?>
+                        <span style="color: <?php echo $i <= $rating ? '#ffd700' : '#e4e5e9'; ?>">★</span>
+                      <?php endfor; ?>
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
+            </div>
           <?php
-              $index++; // Increment index
-            endwhile;
-            wp_reset_postdata();
-          else :
-            // Fallback if no testimonials exist
-            echo '<p>No testimonials found.</p>';
-          endif;
+            $index++; // Increment index
+          endwhile;
+          wp_reset_postdata();
           ?>
+        </div>
       </div>
+    </div>
+  </section>
+<?php else : ?>
+  <!-- Fallback Message -->
+  <section id="testimonials-carousel">
+    <div class="container-vertical">
+      <h2>What Our Clients Say</h2>
+      <p>Be the first to leave a review!</p>
+    </div>
+  </section>
+<?php endif; ?>
+
       <!-- Navigation Buttons -->
       <div class="carousel-navigation">
         <button class="prev"><i class="fas fa-chevron-left"></i></button>
