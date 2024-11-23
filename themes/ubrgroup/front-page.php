@@ -182,7 +182,7 @@ if ($testimonials->have_posts()) : ?>
     <div class="container-vertical">
       <h2>What Our Clients Say</h2>
       <div class="fallback-message">
-        <p>Be the first to leave a review!</p>
+        <p>Be the first to leave a review !</p>
         <a href="https://ubrgroup.ca/review-form/" class="leave-review-btn">Leave a Review</a>
       </div>
     </div>
