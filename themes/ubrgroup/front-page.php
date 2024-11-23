@@ -120,7 +120,6 @@ Driven by innovation and integrity, we pride ourselves on connecting communities
 <!-- Include Achievements Section -->
 <?php get_template_part('section', 'achievements'); ?>
 
-<!-- Testimonials Section -->
 <?php
 // Query to fetch testimonials
 $args = array(
@@ -182,10 +181,14 @@ if ($testimonials->have_posts()) : ?>
   <section id="testimonials-carousel">
     <div class="container-vertical">
       <h2>What Our Clients Say</h2>
-      <p>Be the first to leave a review!</p>
+      <div class="fallback-message">
+        <p>Be the first to leave a review!</p>
+        <a href="https://ubrgroup.ca/review-form/" class="leave-review-btn">Leave a Review</a>
+      </div>
     </div>
   </section>
 <?php endif; ?>
+
 
       <!-- Navigation Buttons -->
       <div class="carousel-navigation">
